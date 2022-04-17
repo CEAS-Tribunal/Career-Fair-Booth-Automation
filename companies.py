@@ -11,12 +11,11 @@ information, filters out companies not attending the current session, and then c
 '''
 
 class Company:
-    def __init__(self, companyName, sessions, industry, boothType, majors, needsElectric, bigComp=False):
+    def __init__(self, companyName, sessions, industry, boothType, needsElectric, bigComp=False):
         self.companyName = companyName
         self.sessions = sessions
         self.industry = industry
         self.boothType = boothType
-        self.majors = majors
         self.needsElectric = needsElectric
         self.bigComp = bigComp
     def printCompanyInfo(self):
@@ -25,7 +24,6 @@ class Company:
         print('Sessions: ', self.sessions)
         print('Industry: ', self.industry)
         print('Booth: ', self.boothType)
-        print('Majors: ', self.majors)
         print('Needs Electricity?: ', self.needsElectric)
         print('Big Company?: ', self.bigComp)
         
@@ -54,7 +52,6 @@ def getSortedCompanies(workbookName, sessionName, excludedIndustries, sortBigCom
         if currCell == 'Sessions': sessionsCol = col
         if currCell == 'Employer Industry': industryCol = col
         if currCell == 'Requested Booth Options': boothsCol = col
-        if currCell == 'Combined Majors': majorsCol = col
         if currCell == 'General Items - Access to Electric': electricCol = col
         if currCell == 'Big Company': bigCompCol = col
 
@@ -72,7 +69,6 @@ def getSortedCompanies(workbookName, sessionName, excludedIndustries, sortBigCom
                     sessions=sheet.cell(row=row, column=sessionsCol).value,
                     industry=sheet.cell(row=row, column=industryCol).value, 
                     boothType=sheet.cell(row=row, column=boothsCol).value, 
-                    majors=sheet.cell(row=row, column=majorsCol).value,
                     needsElectric=bool(sheet.cell(row=row, column=electricCol).value),
                     bigComp=bool(sheet.cell(row=row, column=bigCompCol).value))
             else:
@@ -81,7 +77,6 @@ def getSortedCompanies(workbookName, sessionName, excludedIndustries, sortBigCom
                     sessions=sheet.cell(row=row, column=sessionsCol).value,
                     industry=sheet.cell(row=row, column=industryCol).value, 
                     boothType=sheet.cell(row=row, column=boothsCol).value, 
-                    majors=sheet.cell(row=row, column=majorsCol).value,
                     needsElectric=bool(sheet.cell(row=row, column=electricCol).value),
                     bigComp=False)
 
