@@ -3,14 +3,23 @@ import companies as c
 from openpyxl import load_workbook
 import os
 
-SESSIONNAME = 'Technical Day ONE: Engineering and IT - Wednesday, Feb 9, 10:00 am - 3:00 pm EST' #CHANGE THIS LINE!
-LAYOUTFILENAME = 'CRC floor diagram 8x16 v6-testing.xlsx'
-COMPANIESFILENAME = 'registered as of 2022.01.21.xlsx'
-#'Technical Day ONE: Engineering and IT - Tuesday, Sep 14, 9:00 am - 2:00 pm EDT'
-#'Technical Day TWO: Engineering and IT - Wednesday, Sep 15, 9:00 am - 2:00 pm EDT'
-#'Professional Day: Business and Arts and Sciences - Monday, Sep 13, 9:00 am - 2:00 pm EDT'
 
-if __name__ == '__main__':
+SESSIONNAME = 'Technical Day ONE: Engineering and IT - Wednesday, Feb 9, 10:00 am - 3:00 pm EST' #CHANGE THIS LINE!
+LAYOUTFILENAME = 'CRC floor diagram 8x16 v6-testing.xls' #CHANGE THIS LINE!
+COMPANIESFILENAME = 'registered as of 2022.01.21.xlsx' #CHANGE THIS LINE!
+
+
+def main():
+    if not os.path.isfile(LAYOUTFILENAME):
+        print('\nERROR: LAYOUT NOT FOUND. ENTER THE NAME OF YOUR LAYOUT IN main.py, LINE 8.')
+        print('ENSURE THE FILE IS LOCATED IN THE SAME LOCATION AS THIS CODE.')
+        return
+
+    if not os.path.isfile(COMPANIESFILENAME):
+        print('\nERROR: COMPANIES FILE NOT FOUND. ENTER THE NAME OF YOUR COMAPNIES FILE IN main.py, LINE 9.')
+        print('ENSURE THE FILE IS LOCATED IN THE SAME LOCATION AS THIS CODE.')
+        return
+
     wb = load_workbook(filename = LAYOUTFILENAME)
     sheet = wb.worksheets[0]
 
@@ -42,7 +51,6 @@ if __name__ == '__main__':
     if len(comps) > (len(premBooths) + len(powBooths) + len(stdBooths)):
         print('WARNING: NOT ENOUGH BOOTHS IN THE LAYOUT')
 
-    standardBoothIndex = 0
     count = 0
     unassignedComps = []
 
@@ -141,3 +149,6 @@ if __name__ == '__main__':
     # found a unique name - now save it
     wb.save(outputPath)
     print(f'Result saved to: {outputPath}\n')
+
+if __name__ == '__main__':
+    main()
