@@ -81,7 +81,10 @@ def getSortedCompanies(workbookName, sessionName, excludedIndustries, sortBigCom
                     bigComp=False)
 
             newComp.clearWrongBooths(sessionName)
-            currSessComps.append(newComp)
+            if newComp.boothType == 'Waiting List':
+                print(f'Waiting List: {newComp.companyName}')
+            else:
+                currSessComps.append(newComp)
         
 
     premBooths = []
