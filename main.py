@@ -101,12 +101,12 @@ def main():
                 try:
                     powBooth = powBooths[-1]
                     powBooth.companyName = comp.companyName
-                    finBooth = finBooths + [powBooth]
+                    finBooths = finBooths + [powBooth]
                     powBooths = powBooths[0:-1]
                     numBoothsAssigned += 1
 
                 # don't have any power booths left either
-                except:
+                except IndexError:
                     print(f'WARNING: BOOTH UNABLE TO BE ASSIGNED TO {comp.companyName}')
                     notEnoughBooths = True
                     unassignedComps = unassignedComps + [comp]
