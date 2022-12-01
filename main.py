@@ -137,6 +137,7 @@ def main():
     
     # to create a seperate sheet, uncomment the two lines below. 
     # make sure you replace "sheet_ranges" with "list_sheet". also, change column's value to 2 on line 159
+        
     #wb.create_sheet('List of Companies and Booths')
     #list_sheet = wb.worksheets[1]
 
