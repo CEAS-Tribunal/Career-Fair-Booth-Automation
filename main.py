@@ -47,7 +47,7 @@ def main():
     powBooths = filterPowerBooths(stdBooths)
 
     stdBooths.sort(key=lambda x: x.boothName) 
-#finBooths (list of Booth objects) seems to be the list of all the final booths. These booth objects have a booth name AND a company name
+    #finBooths (list of Booth objects) is the list of all the final booths. These booth objects have a booth name AND a company name
     finBooths = []
     comps = c.getSortedCompanies(COMPANIESFILENAME, SESSIONNAME, excludedIndustries, SORT_BIG_COMPS) # comps is a list of Company objects
 
@@ -75,13 +75,12 @@ def main():
             except IndexError:
                 print(f'WARNING: PREMIUM BOOTH UNABLE TO BE ASSIGNED TO {comp.companyName}')
                 notEnoughPrem = True
-                unassignedComps = unassignedComps + [comp] #This is just another way of appending to a list
+                unassignedComps = unassignedComps + [comp]
 
         elif comp.needsElectric:
             print(f'Needs Electric: {comp.companyName}')
             try:
-                powBooth = powBooths[-1] # sets powBooth equal to the last element in the powBooths list
-                # powBooth (Booth object) now has a company name for the booth name associated with it. previously, companyName was "" for booth objects
+                powBooth = powBooths[-1]
                 powBooth.companyName = comp.companyName 
                 finBooths = finBooths + [powBooth]
                 powBooths = powBooths[0:-1]
@@ -95,8 +94,8 @@ def main():
             print(f'{comp.boothType}: {comp.companyName}')
             # search for an empty standard booth
             try:
-                stdBooth = stdBooths[-1] #Sets stdBooth equal to the last element in the stdBooths list (a booth object)
-                stdBooth.companyName = comp.companyName #stdBooth (Booth object) now has the company name and the booth name associated with it
+                stdBooth = stdBooths[-1] 
+                stdBooth.companyName = comp.companyName 
                 finBooths = finBooths + [stdBooth]
                 stdBooths = stdBooths[0:-1]
                 numBoothsAssigned += 1
